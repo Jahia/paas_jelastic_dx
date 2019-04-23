@@ -1,0 +1,75 @@
+---
+type: install
+version: 0.1
+name: Jahia - Digital Experience Manager v7.3.0.2
+logo: /images/jahia-logo-70x70.png
+id: jahia-dx
+description:
+  short: Jahia - Digital Experience Manager v7.3.0.2
+  text: Digital Experience Manager gives you an agile customizable platform that manages
+    your entire digital ecosystem to innovate and deliver great customer experiences,
+    foster internal collaboration and support dynamic business needs for sustainable
+    growth.
+baseUrl: https://raw.githubusercontent.com/Jahia/paas_jelastic_dx7302
+
+globals:
+  dx_version: 7.3.0.2
+  url_package: ${baseUrl}
+
+success: /text/success.md
+settings:
+  fields: 
+  - name: rootpwd
+    type: string
+    caption: Jahia DX root password
+    vtype: text
+    required: true
+  - name: toolspwd
+    type: string
+    caption: Jahia tools password
+    vtype: text
+    required: true
+  - name: browsingCount
+    type: string
+    caption: Number of DX browsing nodes
+    vtype: text
+    required: true
+  - name: mode
+    type: radio-fieldset
+    caption: Operating Mode
+    values:
+      production: production
+      development: development
+    default: production
+    showIf:
+      production:
+        - name: ddogApikey
+          type: string
+          caption: Datadog API KEY
+          required: true
+          vtype: text
+  - name: shortdomain
+    type: envname
+    caption: Environment
+    required: true 
+  - name: displayname
+    type: string 
+    caption: Display Name 
+    default: Jahia - Digital Experience Manager ${globals.dx_version}
+    required: true
+
+onInstall:
+  - install: 
+      jps: ${globals.url_package}/dx-cluster-universal.yml
+      shortdomain: ${settings.shortdomain}
+      settings:
+        dxVersion: ${dx_version}
+        rootpwd: ${settings.rootpwd}
+        toolspwd: ${settings.toolspwd}
+        browsingCount: ${settings.browsingCount}
+        mode: ${settings.mode}
+        if(settings.mode == 'production'):
+          ddogApikey: ${settings.ddogApikey}
+
+
+
