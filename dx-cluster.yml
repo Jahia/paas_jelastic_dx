@@ -15,6 +15,7 @@ baseUrl: https://raw.githubusercontent.com/Jahia/paas_jelastic_dx7302
 globals:
   dx_version: 7.3.0.2
   url_package: ${baseUrl}
+  url_universal_package: https://raw.githubusercontent.com/Jahia/paas_jelastic_dx
 
 success: /text/success.md
 settings:
@@ -60,7 +61,7 @@ settings:
 
 onInstall:
   - install: 
-      jps: ${globals.url_package}/dx-cluster-universal.yml
+      jps: ${globals.url_universal_package}/dx-cluster-universal.yml
       shortdomain: ${settings.shortdomain}
       settings:
         dxVersion: ${dx_version}
