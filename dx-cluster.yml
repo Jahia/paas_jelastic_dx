@@ -64,13 +64,12 @@ onInstall:
       jps: ${globals.url_universal_package}/dx-cluster-universal.yml
       shortdomain: ${settings.shortdomain}
       settings:
-        dxVersion: ${dx_version}
+        dxVersion: ${globals.dx_version}
         rootpwd: ${settings.rootpwd}
         toolspwd: ${settings.toolspwd}
         browsingCount: ${settings.browsingCount}
         mode: ${settings.mode}
-        if(settings.mode == 'production'):
-          ddogApikey: ${settings.ddogApikey}
+        ddogApikey: ${settings.ddogApikey}
 
 
 
