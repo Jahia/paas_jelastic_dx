@@ -15,7 +15,7 @@ baseUrl: https://raw.githubusercontent.com/Jahia/paas_jelastic_dx7302
 globals:
   dx_version: 7.3.0.2
   url_package: ${baseUrl}
-  url_universal_package: https://raw.githubusercontent.com/Jahia/paas_jelastic_dx
+  url_universal_package: https://github.com/Jahia/paas_jelastic_dx/raw/master
 
 success: /text/success.md
 settings:
