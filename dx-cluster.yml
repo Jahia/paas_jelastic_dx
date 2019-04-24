@@ -17,7 +17,6 @@ globals:
   url_package: ${baseUrl}
   url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/__UNIVERSAL_VERSION__
 
-success: /text/success.md
 settings:
   fields: 
   - name: rootpwd
