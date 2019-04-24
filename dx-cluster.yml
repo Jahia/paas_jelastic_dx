@@ -55,7 +55,7 @@ settings:
   - name: displayname
     type: string 
     caption: Display Name 
-    default: Jahia - Digital Experience Manager ${globals.dx_version}
+    default: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
     required: true
 
 onInstall:
