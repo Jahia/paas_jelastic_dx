@@ -1,21 +1,21 @@
 ---
 type: install
 version: 0.1
-name: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+name: Jahia - Digital Experience Manager v7.3.0.2
 logo: /images/jahia-logo-70x70.png
 id: jahia-dx
 description:
-  short: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+  short: Jahia - Digital Experience Manager v7.3.0.2
   text: Digital Experience Manager gives you an agile customizable platform that manages
     your entire digital ecosystem to innovate and deliver great customer experiences,
     foster internal collaboration and support dynamic business needs for sustainable
     growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/7.3.0.2
 
 globals:
-  dx_version: __MAJOR.MINOR.SERVICEPACK.HOTFIX__
+  dx_version: 7.3.0.2
   url_package: ${baseUrl}
-  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/__UNIVERSAL_VERSION__
+  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/test_galera
 
 settings:
   fields: 
@@ -48,6 +48,78 @@ settings:
           caption: Datadog API KEY
           required: true
           vtype: text
+
+
+  - caption: DB stack
+    type: list
+    name: stack
+    default: mysql
+    required: true
+    values:        
+      - value: mysql
+        caption: MySQL CE
+      - value: mariadb-dockerized
+        caption: MariaDB
+    
+  - caption: DB topology
+    type: list
+    name: dbscheme
+    required: true      
+    dependsOn:                 
+      stack:
+          mysql:
+            - value: slave
+              caption: Master-Slave with extra slaves
+            - value: master
+              caption: Master-Master with extra slaves
+            - value: single
+              caption: Single Group Replication
+            - value: multi
+              caption: Multi Group Replication              
+
+          mariadb-dockerized:    
+            - value: slave
+              caption: Master-Slave with extra slaves
+            - value: master
+              caption: Master-Master with extra slaves
+            - value: galera
+              caption: Galera Cluster
+
+  - type: checkbox
+    name: is_proxysql
+    caption: Add ProxySQL for SQL Load Balancing
+    value: true
+
+  - caption: None
+    inputType: hidden
+    type: list
+    name: dbnodeType
+    dependsOn:                 
+      stack:
+          mysql:
+            - value: mysql
+          mariadb-dockerized:    
+            - value: mariadb-dockerized
+
+  - caption: None
+    inputType: hidden
+    type: list
+    name: dbnodes
+    dependsOn:                 
+      scheme:
+          slave:
+            - value: 2
+          master:    
+            - value: 2
+          single:
+            - value: 3
+          multi:    
+            - value: 3
+          galera:    
+            - value: 3
+
+
+
   - name: shortdomain
     type: envname
     caption: Environment
@@ -55,7 +127,7 @@ settings:
   - name: displayname
     type: string 
     caption: Display Name 
-    default: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+    default: Jahia - Digital Experience Manager v7.3.0.2
     required: true
 
 onInstall:
