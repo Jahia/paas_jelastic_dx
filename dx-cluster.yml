@@ -106,7 +106,7 @@ settings:
     type: list
     name: dbnodes
     dependsOn:                 
-      scheme:
+      dbscheme:
           slave:
             - value: 2
           master:    
@@ -142,6 +142,11 @@ onInstall:
         browsingCount: ${settings.browsingCount}
         mode: ${settings.mode}
         ddogApikey: ${settings.ddogApikey}
+        dbnodeType: ${settings.dbnodeType}
+        dbscheme: ${settings.dbscheme}
+        dbnodes: ${settings.dbnodes}
+        stack: ${settings.stack}
+        is_proxysql: ${settings.is_proxysql}
 
 
 
