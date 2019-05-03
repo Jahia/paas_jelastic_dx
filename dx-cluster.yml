@@ -34,6 +34,7 @@ settings:
     caption: Number of DX browsing nodes
     vtype: text
     required: true
+    default: 2
   - name: mode
     type: radio-fieldset
     caption: Operating Mode
@@ -53,7 +54,7 @@ settings:
   - caption: DB stack
     type: list
     name: stack
-    default: mysql
+    default: mariadb-dockerized
     required: true
     values:        
       - value: mysql
@@ -78,6 +79,8 @@ settings:
               caption: Multi Group Replication              
 
           mariadb-dockerized:    
+            - value: lonely
+              caption: One, lonely, sad and single master
             - value: slave
               caption: Master-Slave with extra slaves
             - value: master
@@ -88,7 +91,7 @@ settings:
   - type: checkbox
     name: is_proxysql
     caption: Add ProxySQL for SQL Load Balancing
-    value: true
+    value: false
 
   - caption: None
     inputType: hidden
@@ -107,6 +110,8 @@ settings:
     name: dbnodes
     dependsOn:                 
       dbscheme:
+          lonely:
+            - value: 1
           slave:
             - value: 2
           master:    
