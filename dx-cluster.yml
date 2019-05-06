@@ -168,7 +168,7 @@ onInstall:
 
 
   - if (${globals.MU_REGIONS}):
-    - if (${response.regions.length} == 2)
+    - if (${response.regions.length} == 2):
       - install: 
           jps: ${globals.url_universal_package}/dx-cluster-universal.yml
           shortdomain: ${globals.envName1}
