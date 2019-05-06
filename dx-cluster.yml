@@ -161,6 +161,9 @@ onInstall:
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
         is_proxysql: ${settings.is_proxysql}
+        region1: ${settings.regions[0]}
+        region2: ${settings.regions[1]}
+        region3: ${settings.regions[2]}
 
 
 
