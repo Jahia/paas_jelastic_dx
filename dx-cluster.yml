@@ -169,50 +169,50 @@ onInstall:
 
   - if (${globals.MU_REGIONS}):
     - if (${response.regions.length} == 2):
-      - install: 
-          jps: ${globals.url_universal_package}/dx-cluster-universal.yml
-          shortdomain: ${globals.envName1}
-          envGroups: ${response.envGroups}
-          region: ${globals.region1}
-          settings:
-            shortdomain: ${settings.shortdomain}
-            dxVersion: ${globals.dx_version}
-            rootpwd: ${settings.rootpwd}
-            toolspwd: ${settings.toolspwd}
-            browsingCount: ${settings.browsingCount}
-            mode: ${settings.mode}
-            ddogApikey: ${settings.ddogApikey}
-            dbnodeType: ${settings.dbnodeType}
-            dbscheme: ${settings.dbscheme}
-            dbnodes: ${settings.dbnodes}
-            stack: ${settings.stack}
-            is_proxysql: ${settings.is_proxysql}
-            region1: ${globals.region1}
-            region2: ${globals.region2}
-            MU_REGIONS: ${globals.MU_REGIONS}
-            CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
-      - install: 
-          jps: ${globals.url_universal_package}/dx-cluster-universal.yml
-          shortdomain: ${globals.envName2}
-          envGroups: ${response.envGroups}
-          region: ${globals.region2}
-          settings:
-            shortdomain: ${settings.shortdomain}
-            dxVersion: ${globals.dx_version}
-            rootpwd: ${settings.rootpwd}
-            toolspwd: ${settings.toolspwd}
-            browsingCount: ${settings.browsingCount}
-            mode: ${settings.mode}
-            ddogApikey: ${settings.ddogApikey}
-            dbnodeType: ${settings.dbnodeType}
-            dbscheme: ${settings.dbscheme}
-            dbnodes: ${settings.dbnodes}
-            stack: ${settings.stack}
-            is_proxysql: ${settings.is_proxysql}
-            region1: ${globals.region1}
-            region2: ${globals.region2}
-            MU_REGIONS: ${globals.MU_REGIONS}
-            CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+      install: 
+        jps: ${globals.url_universal_package}/dx-cluster-universal.yml
+        shortdomain: ${globals.envName1}
+        envGroups: ${response.envGroups}
+        region: ${globals.region1}
+        settings:
+          shortdomain: ${settings.shortdomain}
+          dxVersion: ${globals.dx_version}
+          rootpwd: ${settings.rootpwd}
+          toolspwd: ${settings.toolspwd}
+          browsingCount: ${settings.browsingCount}
+          mode: ${settings.mode}
+          ddogApikey: ${settings.ddogApikey}
+          dbnodeType: ${settings.dbnodeType}
+          dbscheme: ${settings.dbscheme}
+          dbnodes: ${settings.dbnodes}
+          stack: ${settings.stack}
+          is_proxysql: ${settings.is_proxysql}
+          region1: ${globals.region1}
+          region2: ${globals.region2}
+          MU_REGIONS: ${globals.MU_REGIONS}
+          CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+      install: 
+        jps: ${globals.url_universal_package}/dx-cluster-universal.yml
+        shortdomain: ${globals.envName2}
+        envGroups: ${response.envGroups}
+        region: ${globals.region2}
+        settings:
+          shortdomain: ${settings.shortdomain}
+          dxVersion: ${globals.dx_version}
+          rootpwd: ${settings.rootpwd}
+          toolspwd: ${settings.toolspwd}
+          browsingCount: ${settings.browsingCount}
+          mode: ${settings.mode}
+          ddogApikey: ${settings.ddogApikey}
+          dbnodeType: ${settings.dbnodeType}
+          dbscheme: ${settings.dbscheme}
+          dbnodes: ${settings.dbnodes}
+          stack: ${settings.stack}
+          is_proxysql: ${settings.is_proxysql}
+          region1: ${globals.region1}
+          region2: ${globals.region2}
+          MU_REGIONS: ${globals.MU_REGIONS}
+          CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
 
 actions:
   settingsEnvs:
