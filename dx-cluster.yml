@@ -146,26 +146,7 @@ settings:
     required: true
 
 onInstall:
-  - script: |
-      return {
-        result:0,
-        regions:'${settings.regions}'.split(','),
-        envGroups:eval('(' + MANIFEST + ')').envGroups
-      };
-
-  - setGlobals:
-      region1: ${response.regions[0]}
-      region2: ${response.regions[1]}
-      region3: ${response.regions[2]}
-      envName1: ${this}-${response.regions[0]}
-      envName2: ${this}-${response.regions[1]}
-      envName3: ${this}-${response.regions[2]}
-      envGroups: ${response.envGroups}
-
-  - if (${response.regions.length} > 1):
-      setGlobals:
-        MU_REGIONS: true
-        CLUSTER_TYPE: multiregion
+  - settingEnvs: ${settings.shortdomain}
 
   - if (!${globals.MU_REGIONS}):
     - install: 
@@ -187,25 +168,71 @@ onInstall:
 
 
   - if (${globals.MU_REGIONS}):
-    - install: 
-        jps: ${globals.url_universal_package}/dx-cluster-universal.yml
-        shortdomain: ${settings.shortdomain}
-        settings:
-          shortdomain: ${settings.shortdomain}
-          dxVersion: ${globals.dx_version}
-          rootpwd: ${settings.rootpwd}
-          toolspwd: ${settings.toolspwd}
-          browsingCount: ${settings.browsingCount}
-          mode: ${settings.mode}
-          ddogApikey: ${settings.ddogApikey}
-          dbnodeType: ${settings.dbnodeType}
-          dbscheme: ${settings.dbscheme}
-          dbnodes: ${settings.dbnodes}
-          stack: ${settings.stack}
-          is_proxysql: ${settings.is_proxysql}
-          region1: ${globals.regions1}
-          region2: ${globals.regions2}
-          region3: ${globals.regions3}
-          MU_REGIONS: ${globals.MU_REGIONS}
-          CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+    - if (${response.regions.length} == 2)
+      - install: 
+          jps: ${globals.url_universal_package}/dx-cluster-universal.yml
+          shortdomain: ${globals.envName1}
+          envGroups: ${response.envGroups}
+          region: ${globals.region1}
+          settings:
+            shortdomain: ${settings.shortdomain}
+            dxVersion: ${globals.dx_version}
+            rootpwd: ${settings.rootpwd}
+            toolspwd: ${settings.toolspwd}
+            browsingCount: ${settings.browsingCount}
+            mode: ${settings.mode}
+            ddogApikey: ${settings.ddogApikey}
+            dbnodeType: ${settings.dbnodeType}
+            dbscheme: ${settings.dbscheme}
+            dbnodes: ${settings.dbnodes}
+            stack: ${settings.stack}
+            is_proxysql: ${settings.is_proxysql}
+            region1: ${globals.region1}
+            region2: ${globals.region2}
+            MU_REGIONS: ${globals.MU_REGIONS}
+            CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+      - install: 
+          jps: ${globals.url_universal_package}/dx-cluster-universal.yml
+          shortdomain: ${globals.envName2}
+          envGroups: ${response.envGroups}
+          region: ${globals.region2}
+          settings:
+            shortdomain: ${settings.shortdomain}
+            dxVersion: ${globals.dx_version}
+            rootpwd: ${settings.rootpwd}
+            toolspwd: ${settings.toolspwd}
+            browsingCount: ${settings.browsingCount}
+            mode: ${settings.mode}
+            ddogApikey: ${settings.ddogApikey}
+            dbnodeType: ${settings.dbnodeType}
+            dbscheme: ${settings.dbscheme}
+            dbnodes: ${settings.dbnodes}
+            stack: ${settings.stack}
+            is_proxysql: ${settings.is_proxysql}
+            region1: ${globals.region1}
+            region2: ${globals.region2}
+            MU_REGIONS: ${globals.MU_REGIONS}
+            CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
 
+actions:
+  settingsEnvs:
+		- script: |
+				return {
+					result:0,
+					regions:'${settings.regions}'.split(','),
+					envGroups:eval('(' + MANIFEST + ')').envGroups
+				};
+
+		- setGlobals:
+				region1: ${response.regions[0]}
+				region2: ${response.regions[1]}
+				region3: ${response.regions[2]}
+				envName1: ${this}-${response.regions[0]}
+				envName2: ${this}-${response.regions[1]}
+				envName3: ${this}-${response.regions[2]}
+				envGroups: ${response.envGroups}
+
+		- if (${response.regions.length} > 1):
+				setGlobals:
+					MU_REGIONS: true
+					CLUSTER_TYPE: multiregion
