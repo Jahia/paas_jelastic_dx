@@ -267,7 +267,7 @@ actions:
         }
 
         return {
-          regions:${settings.regions}'.split(',')',
+          regions:'${settings.regions}'.split(','),
           aBrow:shuffle(aBrow),
           aProc:shuffle(aProc),
           aDB:shuffle(aDB)
