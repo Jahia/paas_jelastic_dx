@@ -179,12 +179,12 @@ onInstall:
               dxVersion: ${globals.dx_version}
               rootpwd: ${settings.rootpwd}
               toolspwd: ${settings.toolspwd}
-              browsingCount: ${settings.browsingCount}
+              browsingCount: ${globals.browCountReg1}
               mode: ${settings.mode}
               ddogApikey: ${settings.ddogApikey}
               dbnodeType: ${settings.dbnodeType}
               dbscheme: ${settings.dbscheme}
-              dbnodes: ${settings.dbnodes}
+              dbnodes: ${gloabls.dbCountReg1}
               stack: ${settings.stack}
               is_proxysql: ${settings.is_proxysql}
               region1: ${globals.region1}
@@ -200,12 +200,12 @@ onInstall:
               dxVersion: ${globals.dx_version}
               rootpwd: ${settings.rootpwd}
               toolspwd: ${settings.toolspwd}
-              browsingCount: ${settings.browsingCount}
+              browsingCount: ${globals.browCountReg2}
               mode: ${settings.mode}
               ddogApikey: ${settings.ddogApikey}
               dbnodeType: ${settings.dbnodeType}
               dbscheme: ${settings.dbscheme}
-              dbnodes: ${settings.dbnodes}
+              dbnodes: ${globals.dbCountReg2}
               stack: ${settings.stack}
               is_proxysql: ${settings.is_proxysql}
               region1: ${globals.region1}
@@ -231,7 +231,58 @@ actions:
         envName3: ${this}-3
         envGroups: ${response.envGroups}
 
+    - script: |
+        regions = '${settings.regions}'.split(',')
+        nbRegion = regions.length
+        nbBrowsing = ${settings.browsingCount}
+        nbProcessing = 1
+        nbDB = ${settings.dbnodes}
+
+        aBrow = []
+        aProc = []
+        aDB = []
+
+        for (region of regions) {
+          browsing = Math.floor(nbBrowsing / nbRegion)
+          aBrow.push(browsing)
+          nbBrowsing -= browsing
+          processing = Math.floor(nbProcessing / nbRegion)
+          aProc.push(processing)
+          nbProcessing -= processing
+          DB = Math.floor(nbDB / nbRegion)
+          aProc.push(DB)
+          nbDB -= DB
+
+          nbRegion -= 1
+        }
+
+        function shuffle(a) {
+          for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                            [a[i], a[j]] = [a[j], a[i]];
+
+          }
+              return a;
+
+        }
+
+        return {
+          regions:${settings.regions}'.split(',')',
+          aBrow:shuffle(aBrow),
+          aProc:shuffle(aProc),
+          aDB:shuffle(aDB)
+        }
+
     - if (${response.regions.length} > 1):
       setGlobals:
         MU_REGIONS: true
         CLUSTER_TYPE: multiregion
+        browCountReg1: ${response.aBrow[0]}
+        browCountReg2: ${response.aBrow[1]}
+        browCountReg3: ${response.aBrow[2]}
+        procCountReg1: ${response.aProc[0]}
+        procCountReg2: ${response.aProc[1]}
+        procCountReg3: ${response.aProc[2]}
+        dbCountReg1: ${response.aDB[0]}
+        dbCountReg2: ${response.aDB[1]}
+        dbCountReg3: ${response.aDB[2]}
