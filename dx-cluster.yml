@@ -242,7 +242,7 @@ actions:
         aProc = []
         aDB = []
 
-        for (region of regions) {
+        for (i=0; i < regions.length; i++) {
           browsing = Math.floor(nbBrowsing / nbRegion)
           aBrow.push(browsing)
           nbBrowsing -= browsing
