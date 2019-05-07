@@ -157,12 +157,13 @@ onInstall:
             dxVersion: ${globals.dx_version}
             rootpwd: ${settings.rootpwd}
             toolspwd: ${settings.toolspwd}
-            browsingCount: ${settings.browsingCount}
+            browsingCount: ${globals.browCountReg1}
+            processingCount: ${globals.procCountReg1}
             mode: ${settings.mode}
             ddogApikey: ${settings.ddogApikey}
             dbnodeType: ${settings.dbnodeType}
             dbscheme: ${settings.dbscheme}
-            dbnodes: ${settings.dbnodes}
+            dbnodes: ${globals.dbCountReg1}
             stack: ${settings.stack}
             is_proxysql: ${settings.is_proxysql}
 
