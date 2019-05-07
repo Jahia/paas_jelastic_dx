@@ -132,6 +132,7 @@ settings:
       type: regionlist
       caption: Region(s)
       multiSelect: true
+      selectFirstAvailable: true
       min: 1
       max: 3
     - name: shortdomain
