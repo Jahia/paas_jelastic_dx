@@ -225,9 +225,9 @@ actions:
         region1: ${response.regions[0]}
         region2: ${response.regions[1]}
         region3: ${response.regions[2]}
-        envName1: ${this}-${response.regions[0]}
-        envName2: ${this}-${response.regions[1]}
-        envName3: ${this}-${response.regions[2]}
+        envName1: ${this}-1
+        envName2: ${this}-2
+        envName3: ${this}-3
         envGroups: ${response.envGroups}
 
     - if (${response.regions.length} > 1):
