@@ -246,11 +246,13 @@ actions:
           browsing = Math.floor(nbBrowsing / nbRegion)
           aBrow.push(browsing)
           nbBrowsing -= browsing
+
           processing = Math.floor(nbProcessing / nbRegion)
           aProc.push(processing)
           nbProcessing -= processing
+
           DB = Math.floor(nbDB / nbRegion)
-          aProc.push(DB)
+          aDB.push(DB)
           nbDB -= DB
 
           nbRegion -= 1
@@ -267,6 +269,7 @@ actions:
         }
 
         return {
+          result:0,
           regions:'${settings.regions}'.split(','),
           aBrow:shuffle(aBrow),
           aProc:shuffle(aProc),
