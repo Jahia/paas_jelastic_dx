@@ -213,7 +213,7 @@ onInstall:
               CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
 
 actions:
-  settingsEnvs:
+  settingEnvs:
     - script: |
         return {
           result:0,
