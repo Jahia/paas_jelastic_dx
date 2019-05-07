@@ -180,11 +180,12 @@ onInstall:
               rootpwd: ${settings.rootpwd}
               toolspwd: ${settings.toolspwd}
               browsingCount: ${globals.browCountReg1}
+              processingCount: ${globals.procCountReg1}
               mode: ${settings.mode}
               ddogApikey: ${settings.ddogApikey}
               dbnodeType: ${settings.dbnodeType}
               dbscheme: ${settings.dbscheme}
-              dbnodes: ${gloabls.dbCountReg1}
+              dbnodes: ${globals.dbCountReg1}
               stack: ${settings.stack}
               is_proxysql: ${settings.is_proxysql}
               region1: ${globals.region1}
@@ -201,6 +202,7 @@ onInstall:
               rootpwd: ${settings.rootpwd}
               toolspwd: ${settings.toolspwd}
               browsingCount: ${globals.browCountReg2}
+              processingCount: ${globals.procCountReg2}
               mode: ${settings.mode}
               ddogApikey: ${settings.ddogApikey}
               dbnodeType: ${settings.dbnodeType}
