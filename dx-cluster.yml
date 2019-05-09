@@ -232,7 +232,7 @@ actions:
         envName1: ${this}-1
         envName2: ${this}-2
         envName3: ${this}-3
-        envGroups: ${response.envGroups}
+        envGroups: ${envName}
 
     - script: |
         regions = '${settings.regions}'.split(',')
