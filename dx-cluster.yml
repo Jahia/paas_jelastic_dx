@@ -295,3 +295,11 @@ actions:
           dbCountReg1: ${response.aDB[0]}
           dbCountReg2: ${response.aDB[1]}
           dbCountReg3: ${response.aDB[2]}
+
+    - if (${response.regions.length} == 1):
+        setGlobals:
+          MU_REGIONS: false
+          CLUSTER_TYPE: region
+          browCountReg1: ${settings.browsingCount}
+          procCountReg1: ${settings.processingCount}
+          dbCountReg1: ${settings.dbnodes}
