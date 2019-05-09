@@ -272,12 +272,13 @@ actions:
         }
 
         return {
-          result:0
-          regions:'${settings.regions}'.split(',')
-          aBrow:shuffle(aBrow)
-          aProc:shuffle(aProc)
+          result:0,
+          regions:'${settings.regions}'.split(','),
+          aBrow:shuffle(aBrow),
+          aProc:shuffle(aProc),
           aDB:shuffle(aDB)
-        };
+        }
+
 
     - log: "## AVANT LE TEST MULTIREGION"
 
