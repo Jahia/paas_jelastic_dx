@@ -40,6 +40,13 @@ settings:
       vtype: text
       required: true
       default: 2
+    - name: processingCount
+      type: string
+      caption: Number of DX processing nodes
+      required: true
+      default: 1
+      inputType: hidden
+
     - name: mode
       type: radio-fieldset
       caption: Operating Mode
