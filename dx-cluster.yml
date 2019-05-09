@@ -234,7 +234,7 @@ actions:
         envName3: ${this}-3
         envGroups: ${envName}
 
-    - script: |
+    - script: |-
         regions = '${settings.regions}'.split(',')
         nbRegion = regions.length
         nbBrowsing = ${settings.browsingCount}
@@ -272,23 +272,25 @@ actions:
         }
 
         return {
-          result:0,
-          regions:'${settings.regions}'.split(','),
-          aBrow:shuffle(aBrow),
-          aProc:shuffle(aProc),
+          result:0
+          regions:'${settings.regions}'.split(',')
+          aBrow:shuffle(aBrow)
+          aProc:shuffle(aProc)
           aDB:shuffle(aDB)
-        }
+        };
+
+    - log: "## AVANT LE TEST MULTIREGION"
 
     - if (${response.regions.length} > 1):
-      setGlobals:
-        MU_REGIONS: true
-        CLUSTER_TYPE: multiregion
-        browCountReg1: ${response.aBrow[0]}
-        browCountReg2: ${response.aBrow[1]}
-        browCountReg3: ${response.aBrow[2]}
-        procCountReg1: ${response.aProc[0]}
-        procCountReg2: ${response.aProc[1]}
-        procCountReg3: ${response.aProc[2]}
-        dbCountReg1: ${response.aDB[0]}
-        dbCountReg2: ${response.aDB[1]}
-        dbCountReg3: ${response.aDB[2]}
+        setGlobals:
+          MU_REGIONS: true
+          CLUSTER_TYPE: multiregion
+          browCountReg1: ${response.aBrow[0]}
+          browCountReg2: ${response.aBrow[1]}
+          browCountReg3: ${response.aBrow[2]}
+          procCountReg1: ${response.aProc[0]}
+          procCountReg2: ${response.aProc[1]}
+          procCountReg3: ${response.aProc[2]}
+          dbCountReg1: ${response.aDB[0]}
+          dbCountReg2: ${response.aDB[1]}
+          dbCountReg3: ${response.aDB[2]}
