@@ -21,6 +21,8 @@ globals:
   region3: ${settings.regions[2]}
   MU_REGIONS: false
   CLUSTER_TYPE: region
+  db_user: jahia-db-${fn.random}
+  db_pass: ${fn.password(20)}
 
 settings:
   fields:
@@ -173,6 +175,8 @@ onInstall:
             dbnodes: ${globals.dbCountReg1}
             stack: ${settings.stack}
             is_proxysql: ${settings.is_proxysql}
+            db_user: ${globals.db_user}
+            db_pass: ${globals.db_pass}
 
 
   - if (${globals.MU_REGIONS}):
@@ -200,6 +204,8 @@ onInstall:
               region2: ${globals.region2}
               MU_REGIONS: ${globals.MU_REGIONS}
               CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+              db_user: ${globals.db_user}
+              db_pass: ${globals.db_pass}
           - jps: ${globals.url_universal_package}/dx-cluster-universal.yml
             shortdomain: ${globals.envName2}
             envGroups: ${response.envGroups}
@@ -222,6 +228,8 @@ onInstall:
               region2: ${globals.region2}
               MU_REGIONS: ${globals.MU_REGIONS}
               CLUSTER_TYPE: ${globals.CLUSTER_TYPE}
+              db_user: ${globals.db_user}
+              db_pass: ${globals.db_pass}
 
 actions:
   settingEnvs:
