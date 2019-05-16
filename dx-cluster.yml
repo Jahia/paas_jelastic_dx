@@ -15,7 +15,7 @@ baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/7.2.1.1.prod
 globals:
   dx_version: 7.2.1.1
   url_package: ${baseUrl}
-  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/1.0
+  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/1.0.prod
 
 settings:
   fields: 
