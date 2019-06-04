@@ -35,10 +35,10 @@ settings:
     vtype: text
     required: true
     default: 2
-  - name: region
-    type: string
-    caption: Region
-    vtype: text
+  - name: envRegion
+    type: regionlist
+    caption: Region 
+    vtype: list
     required: true    
   - name: mode
     type: radio-fieldset
@@ -144,7 +144,7 @@ onInstall:
   - install: 
       jps: ${globals.url_universal_package}/dx-cluster-universal.yml
       shortdomain: ${settings.shortdomain}
-      region: ${settings.region}
+      region: ${settings.envRegion}
       settings:
         shortdomain: ${settings.shortdomain}
         dxVersion: ${globals.dx_version}
