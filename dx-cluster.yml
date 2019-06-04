@@ -36,10 +36,10 @@ settings:
     required: true
     default: 2
   - name: envRegion
-    type: regionlist
-    caption: Region 
-    vtype: list
-    required: true    
+    type: string
+    caption: Region
+    vtype: text
+    required: true
   - name: mode
     type: radio-fieldset
     caption: Operating Mode
