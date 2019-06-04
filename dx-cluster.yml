@@ -35,6 +35,11 @@ settings:
     vtype: text
     required: true
     default: 2
+  - name: region
+    type: string
+    caption: Region
+    vtype: text
+    required: true    
   - name: mode
     type: radio-fieldset
     caption: Operating Mode
