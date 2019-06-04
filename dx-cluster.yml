@@ -139,6 +139,7 @@ onInstall:
   - install: 
       jps: ${globals.url_universal_package}/dx-cluster-universal.yml
       shortdomain: ${settings.shortdomain}
+      region: ${settings.region}
       settings:
         shortdomain: ${settings.shortdomain}
         dxVersion: ${globals.dx_version}
