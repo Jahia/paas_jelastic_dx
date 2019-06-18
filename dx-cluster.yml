@@ -1,78 +1,75 @@
 ---
 type: install
 version: 0.1
-name: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+name: Jahia - Digital Experience Manager vwip_regionset
 logo: /images/jahia-logo-70x70.png
 id: jahia-dx
 description:
-  short: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+  short: Jahia - Digital Experience Manager vwip_regionset
   text: Digital Experience Manager gives you an agile customizable platform that manages
     your entire digital ecosystem to innovate and deliver great customer experiences,
     foster internal collaboration and support dynamic business needs for sustainable
     growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/wip_regionset
 
 globals:
-  dx_version: __MAJOR.MINOR.SERVICEPACK.HOTFIX__
+  dx_version: wip_regionset
   url_package: ${baseUrl}
-  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/__UNIVERSAL_VERSION__
+  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/master
 
 settings:
-  fields: 
-  - name: rootpwd
-    type: string
-    caption: Jahia DX root password
-    vtype: text
-    required: true
-  - name: toolspwd
-    type: string
-    caption: Jahia tools password
-    vtype: text
-    required: true
-  - name: browsingCount
-    type: string
-    caption: Number of DX browsing nodes
-    vtype: text
-    required: true
-    default: 2
-  - name: envRegion
-    type: string
-    caption: Region
-    vtype: text
-    required: true   
-  - name: mode
-    type: radio-fieldset
-    caption: Operating Mode
-    values:
-      production: production
-      development: development
-    default: production
-    showIf:
-      production:
-        - name: ddogApikey
-          type: string
-          caption: Datadog API KEY
-          required: true
-          vtype: text
+  fields:
+    - name: rootpwd
+      type: string
+      caption: Jahia DX root password
+      vtype: text
+      required: true
+    - name: toolspwd
+      type: string
+      caption: Jahia tools password
+      vtype: text
+      required: true
+    - name: browsingCount
+      type: string
+      caption: Number of DX browsing nodes
+      vtype: text
+      required: true
+      default: 2
+    - name: envRegion
+      type: regionlist
+      caption: Region
+      required: true
+    - name: mode
+      type: radio-fieldset
+      caption: Operating Mode
+      values:
+        production: production
+        development: development
+      default: production
+      showIf:
+        production:
+          - name: ddogApikey
+            type: string
+            caption: Datadog API KEY
+            required: true
+            vtype: text
+    - caption: DB stack
+      type: list
+      name: stack
+      default: mariadb-dockerized
+      required: true
+      values:
+        - value: mysql
+          caption: MySQL CE
+        - value: mariadb-dockerized
+          caption: MariaDB
 
-
-  - caption: DB stack
-    type: list
-    name: stack
-    default: mariadb-dockerized
-    required: true
-    values:        
-      - value: mysql
-        caption: MySQL CE
-      - value: mariadb-dockerized
-        caption: MariaDB
-    
-  - caption: DB topology
-    type: list
-    name: dbscheme
-    required: true      
-    dependsOn:                 
-      stack:
+    - caption: DB topology
+      type: list
+      name: dbscheme
+      required: true
+      dependsOn:
+        stack:
           mysql:
             - value: slave
               caption: Master-Slave with extra slaves
@@ -81,9 +78,8 @@ settings:
             - value: single
               caption: Single Group Replication
             - value: multi
-              caption: Multi Group Replication              
-
-          mariadb-dockerized:    
+              caption: Multi Group Replication
+          mariadb-dockerized:
             - value: lonely
               caption: One, lonely, sad and single master
             - value: slave
@@ -92,56 +88,50 @@ settings:
               caption: Master-Master with extra slaves
             - value: galera
               caption: Galera Cluster
-
-  - type: checkbox
-    name: is_proxysql
-    caption: Add ProxySQL for SQL Load Balancing
-    value: false
-
-  - caption: None
-    inputType: hidden
-    type: list
-    name: dbnodeType
-    dependsOn:                 
-      stack:
+    - type: checkbox
+      name: is_proxysql
+      caption: Add ProxySQL for SQL Load Balancing
+      value: false
+    - caption: None
+      inputType: hidden
+      type: list
+      name: dbnodeType
+      dependsOn:
+        stack:
           mysql:
             - value: mysql
-          mariadb-dockerized:    
+          mariadb-dockerized:
             - value: mariadb-dockerized
-
-  - caption: None
-    inputType: hidden
-    type: list
-    name: dbnodes
-    dependsOn:                 
-      dbscheme:
+    - caption: None
+      inputType: hidden
+      type: list
+      name: dbnodes
+      dependsOn:
+        dbscheme:
           lonely:
             - value: 1
           slave:
             - value: 2
-          master:    
+          master:
             - value: 2
           single:
             - value: 3
-          multi:    
+          multi:
             - value: 3
-          galera:    
+          galera:
             - value: 3
-
-
-
-  - name: shortdomain
-    type: envname
-    caption: Environment
-    required: true 
-  - name: displayname
-    type: string 
-    caption: Display Name 
-    default: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
-    required: true
+    - name: shortdomain
+      type: envname
+      caption: Environment
+      required: true
+    - name: displayname
+      type: string
+      caption: Display Name
+      default: Jahia - Digital Experience Manager vwip_regionset
+      required: true
 
 onInstall:
-  - install: 
+  - install:
       jps: ${globals.url_universal_package}/dx-cluster-universal.yml
       shortdomain: ${settings.shortdomain}
       region: ${settings.envRegion}
@@ -158,6 +148,3 @@ onInstall:
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
         is_proxysql: ${settings.is_proxysql}
-
-
-
