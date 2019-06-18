@@ -1,21 +1,21 @@
 ---
 type: install
 version: 0.1
-name: Jahia - Digital Experience Manager vwip_regionset
+name: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
 logo: /images/jahia-logo-70x70.png
 id: jahia-dx
 description:
-  short: Jahia - Digital Experience Manager vwip_regionset
+  short: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
   text: Digital Experience Manager gives you an agile customizable platform that manages
     your entire digital ecosystem to innovate and deliver great customer experiences,
     foster internal collaboration and support dynamic business needs for sustainable
     growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/wip_regionset
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/__MAJOR.MINOR.SERVICEPACK.HOTFIX__
 
 globals:
-  dx_version: wip_regionset
+  dx_version: __MAJOR.MINOR.SERVICEPACK.HOTFIX__
   url_package: ${baseUrl}
-  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/master
+  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/__UNIVERSAL_VERSION__
 
 settings:
   fields:
@@ -127,7 +127,7 @@ settings:
     - name: displayname
       type: string
       caption: Display Name
-      default: Jahia - Digital Experience Manager vwip_regionset
+      default: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
       required: true
 
 onInstall:
