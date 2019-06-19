@@ -1,24 +1,36 @@
 ---
 type: install
 version: 0.1
-name: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+name: Jahia - Digital Experience Manager
 logo: /images/jahia-logo-70x70.png
 id: jahia-dx
 description:
-  short: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
-  text: Digital Experience Manager gives you an agile customizable platform that manages
-    your entire digital ecosystem to innovate and deliver great customer experiences,
-    foster internal collaboration and support dynamic business needs for sustainable
-    growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+  short: Jahia - Digital Experience Manager
+  text: Digital Experience Manager gives you an agile customizable platform that
+    manages your entire digital ecosystem to innovate and deliver great customer
+    experiences, foster internal collaboration and support dynamic business
+    needs for sustainable growth.
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/
 
 globals:
-  dx_version: __MAJOR.MINOR.SERVICEPACK.HOTFIX__
   url_package: ${baseUrl}
-  url_universal_package: https://github.com/Jahia/paas_jelastic_dx_universal/raw/__UNIVERSAL_VERSION__
+  url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw
 
 settings:
   fields:
+    - name: productVersion
+      type: list
+      caption: DX version
+      values:
+        "7.2.1.1": 7.2.1.1
+        "7.2.2.0": 7.2.2.0
+        "7.2.2.1": 7.2.2.1
+        "7.2.3.0": 7.2.3.0
+        "7.2.3.1": 7.2.3.1
+        "7.3.0.0": 7.3.0.0
+        "7.3.0.2": 7.3.0.2
+        "7.3.1.0": 7.3.1.0
+      default: 7.3.1.0
     - name: rootpwd
       type: string
       caption: Jahia DX root password
@@ -63,7 +75,6 @@ settings:
           caption: MySQL CE
         - value: mariadb-dockerized
           caption: MariaDB
-
     - caption: DB topology
       type: list
       name: dbscheme
@@ -127,12 +138,34 @@ settings:
     - name: displayname
       type: string
       caption: Display Name
-      default: Jahia - Digital Experience Manager v__MAJOR.MINOR.SERVICEPACK.HOTFIX__
+      default: Jahia - Digital Experience Manager
       required: true
 
 onInstall:
+  - script: |
+      var matrix = {
+        "7.2.1.1": "1.0",
+        "7.2.2.0": "1.0",
+        "7.2.2.1": "1.0",
+        "7.2.3.0": "1.0",
+        "7.2.3.1": "1.0",
+        "7.3.0.0": "1.0",
+        "7.3.0.2": "1.0",
+        "7.3.1.0": "1.0"
+      };
+      return {"result": 0,
+        "universal_version": matrix['${settings.productVersion}']
+      };
+
+  - setGlobals:
+      dx_version: ${settings.productVersion}
+      url_universal_package: ${globals.url_univ}/${response.universal_version}
+
+  - log: "## you choose dx v${globals.dx_version}"
+  - log: "## using url for universal package: ${globals.url_universal_package}"
+
   - install:
-      jps: ${globals.url_universal_package}/dx-cluster-universal.yml
+      jps: ${globals.url_universal_package}/dx-cluster-universal.yml?_r=${fn.random}
       shortdomain: ${settings.shortdomain}
       region: ${settings.envRegion}
       settings:
