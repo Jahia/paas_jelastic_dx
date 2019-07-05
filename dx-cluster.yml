@@ -10,7 +10,7 @@ description:
     manages your entire digital ecosystem to innovate and deliver great customer
     experiences, foster internal collaboration and support dynamic business
     needs for sustainable growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.2
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.3
 
 globals:
   url_package: ${baseUrl}
@@ -27,10 +27,12 @@ settings:
         "7.2.2.1": 7.2.2.1
         "7.2.3.0": 7.2.3.0
         "7.2.3.1": 7.2.3.1
+        "7.2.3.6": 7.2.3.6
         "7.3.0.0": 7.3.0.0
         "7.3.0.2": 7.3.0.2
         "7.3.1.0": 7.3.1.0
-      default: 7.3.1.0
+        "7.3.1.1": 7.3.1.1
+      default: 7.3.1.1
     - name: rootpwd
       type: string
       caption: Jahia DX root password
@@ -140,18 +142,23 @@ settings:
       caption: Display Name
       default: Jahia - Digital Experience Manager
       required: true
+    - name: license
+      type: text
+      caption: license
 
 onInstall:
   - script: |
       var matrix = {
-        "7.2.1.1": "v1.3",
-        "7.2.2.0": "v1.3",
-        "7.2.2.1": "v1.3",
-        "7.2.3.0": "v1.3",
-        "7.2.3.1": "v1.3",
-        "7.3.0.0": "v1.3",
-        "7.3.0.2": "v1.3",
-        "7.3.1.0": "v1.3"
+        "7.2.1.1": "v1.4",
+        "7.2.2.0": "v1.4",
+        "7.2.2.1": "v1.4",
+        "7.2.3.0": "v1.4",
+        "7.2.3.1": "v1.4",
+        "7.2.3.6": "v1.4",
+        "7.3.0.0": "v1.4",
+        "7.3.0.2": "v1.4",
+        "7.3.1.0": "v1.4",
+        "7.3.1.1": "v1.4"
       };
       return {"result": 0,
         "universal_version": matrix['${settings.productVersion}']
@@ -181,3 +188,4 @@ onInstall:
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
         is_proxysql: ${settings.is_proxysql}
+        license: ${settings.license}
