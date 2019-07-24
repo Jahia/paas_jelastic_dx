@@ -176,6 +176,7 @@ onInstall:
       displayName: ${settings.displayname}
       settings:
         shortdomain: ${settings.shortdomain}
+        displayName: ${settings.displayname}
         dxVersion: ${globals.dx_version}
         rootpwd: ${settings.rootpwd}
         toolspwd: ${settings.toolspwd}
