@@ -1,6 +1,10 @@
 # Jahia DX Versions Package Release notes
 
-## actual version: v1.3
+## actual version: v1.4
+
+### v1.4 (2019-07-24)
+* [IMPROVEMENT] send displayName to universal package
+* [NEW]: now default universal package tag is v1.5
 
 ### v1.3 (2019-07-05)
 * [NEW]: License is now handle by this package
