@@ -4,6 +4,7 @@
 
 ### v1.4 (2019-07-24)
 * [IMPROVEMENT] send displayName to universal package
+    * use setting `displayname` for that
 * [NEW]: now default universal package tag is v1.5
 
 ### v1.3 (2019-07-05)
