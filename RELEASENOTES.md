@@ -2,7 +2,7 @@
 
 ## actual version: v1.5
 
-### v1.4 (2019-08-02)
+### v1.5 (2019-08-02)
 * [NEW]:  now default universal package tag is v1.6
 
 ### v1.4 (2019-07-24)
