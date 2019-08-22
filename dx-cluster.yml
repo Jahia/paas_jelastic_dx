@@ -10,7 +10,7 @@ description:
     manages your entire digital ecosystem to innovate and deliver great customer
     experiences, foster internal collaboration and support dynamic business
     needs for sustainable growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.5
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.6
 
 globals:
   url_package: ${baseUrl}
@@ -148,15 +148,15 @@ settings:
 onInstall:
   - script: |
       var matrix = {
-        "7.2.1.1": "v1.6",
-        "7.2.2.0": "v1.6",
-        "7.2.2.1": "v1.6",
-        "7.2.3.0": "v1.6",
-        "7.2.3.1": "v1.6",
-        "7.3.0.0": "v1.6",
-        "7.3.0.2": "v1.6",
-        "7.3.1.0": "v1.6",
-        "7.3.1.1": "v1.6"
+        "7.2.1.1": "v1.7",
+        "7.2.2.0": "v1.7",
+        "7.2.2.1": "v1.7",
+        "7.2.3.0": "v1.7",
+        "7.2.3.1": "v1.7",
+        "7.3.0.0": "v1.7",
+        "7.3.0.2": "v1.7",
+        "7.3.1.0": "v1.7",
+        "7.3.1.1": "v1.7"
       };
       return {"result": 0,
         "universal_version": matrix['${settings.productVersion}']
