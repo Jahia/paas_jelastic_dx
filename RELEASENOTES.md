@@ -1,6 +1,9 @@
 # Jahia DX Versions Package Release notes
 
-## actual version: v1.6
+## actual version: v1.7
+
+### v1.7 (2019-09-03)
+* [NEW]:  now default universal package tag is v1.8
 
 ### v1.6 (2019-08-02)
 * [NEW]:  now default universal package tag is v1.7
