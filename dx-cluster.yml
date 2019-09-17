@@ -14,7 +14,7 @@ baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.9
 
 globals:
   url_package: ${baseUrl}
-  url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw
+  url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw/PAAS-309-haproxy
 
 settings:
   fields:
@@ -46,6 +46,11 @@ settings:
       type: string
       caption: Number of DX browsing nodes
       vtype: text
+      required: true
+      default: 2
+    - name: loadBalancerCount
+      caption: Number of haproxy nodes
+      type: string
       required: true
       default: 2
     - name: envRegion
@@ -164,7 +169,8 @@ onInstall:
 
   - setGlobals:
       dx_version: ${settings.productVersion}
-      url_universal_package: ${globals.url_univ}/${response.universal_version}
+      url_universal_package: ${globals.url_univ}
+      # url_universal_package: ${globals.url_univ}/${response.universal_version}
 
   - if(settings.ddogApikey):
       - setGlobals:
@@ -177,7 +183,7 @@ onInstall:
   - log: "## using url for universal package: ${globals.url_universal_package}"
 
   - install:
-      jps: ${globals.url_universal_package}/dx-cluster-universal.yml?_r=${fn.random}
+    - jps: ${globals.url_universal_package}/dx-cluster-universal.yml?_r=${fn.random}
       shortdomain: ${settings.shortdomain}
       region: ${settings.envRegion}
       displayName: ${settings.displayname}
@@ -196,3 +202,18 @@ onInstall:
         stack: ${settings.stack}
         is_proxysql: ${settings.is_proxysql}
         license: ${settings.license}
+        
+  - setGlobals:
+      dxEnvAppId: ${response.appid}
+
+  - log: "## Installing haproxy environment"
+
+  # Install of haproxy environment
+  - install:
+    - jps: ${globals.url_universal_package}/scripts/add-haproxies.jps?_r=${fn.random}
+      shortdomain: "${settings.shortdomain}-ha"
+      region: ${settings.envRegion}
+      displayName: "${settings.displayname}-ha"
+      settings:
+        loadBalancerCount: ${settings.loadBalancerCount}
+        targetEnvironment: ${globals.dxEnvAppId}
