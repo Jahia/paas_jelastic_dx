@@ -2,6 +2,10 @@
 
 ## actual version: v1.8
 
+### v1.9 (2019-09-18)
+* [NEW]:  now default universal package tag is v1.9
+* [NEW]:  set and send a default string for `ddogApikey` if create dev env
+
 ### v1.8 (2019-09-03)
 * [NEW]:  now default universal package tag is v1.8.1
 
