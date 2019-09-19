@@ -166,12 +166,12 @@ onInstall:
       dx_version: ${settings.productVersion}
       url_universal_package: ${globals.url_univ}/${response.universal_version}
 
-  - if(!${settings.ddogApikey}):
-      - setGlobals:
-          ddogApikey: NoDatadog
-  - if(${settings.ddogApikey}):
+  - if(settings.ddogApikey):
       - setGlobals:
           ddogApikey: ${settings.ddogApikey}
+  - else:
+      - setGlobals:
+          ddogApikey: NoDatadog
 
   - log: "## you choose dx v${globals.dx_version}"
   - log: "## using url for universal package: ${globals.url_universal_package}"
