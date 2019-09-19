@@ -1,8 +1,8 @@
 # Jahia DX Versions Package Release notes
 
-## actual version: v1.8
+## actual version: v1.9
 
-### v1.9 (2019-09-18)
+### v1.9 (2019-09-19)
 * [NEW]:  now default universal package tag is v1.9
 * [NEW]:  set and send a default string for `ddogApikey` if create dev env
 
