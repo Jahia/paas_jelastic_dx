@@ -10,7 +10,7 @@ description:
     manages your entire digital ecosystem to innovate and deliver great customer
     experiences, foster internal collaboration and support dynamic business
     needs for sustainable growth.
-baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.8
+baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.9
 
 globals:
   url_package: ${baseUrl}
@@ -148,15 +148,15 @@ settings:
 onInstall:
   - script: |
       var matrix = {
-        "7.2.1.1": "v1.8.1",
-        "7.2.2.0": "v1.8.1",
-        "7.2.2.1": "v1.8.1",
-        "7.2.3.0": "v1.8.1",
-        "7.2.3.1": "v1.8.1",
-        "7.3.0.0": "v1.8.1",
-        "7.3.0.2": "v1.8.1",
-        "7.3.1.0": "v1.8.1",
-        "7.3.1.1": "v1.8.1"
+        "7.2.1.1": "v1.9",
+        "7.2.2.0": "v1.9",
+        "7.2.2.1": "v1.9",
+        "7.2.3.0": "v1.9",
+        "7.2.3.1": "v1.9",
+        "7.3.0.0": "v1.9",
+        "7.3.0.2": "v1.9",
+        "7.3.1.0": "v1.9",
+        "7.3.1.1": "v1.9"
       };
       return {"result": 0,
         "universal_version": matrix['${settings.productVersion}']
@@ -165,6 +165,13 @@ onInstall:
   - setGlobals:
       dx_version: ${settings.productVersion}
       url_universal_package: ${globals.url_univ}/${response.universal_version}
+
+  - if(!${settings.ddogApikey}):
+      - setGlobals:
+          ddogApikey: NoDatadog
+  - if(${settings.ddogApikey}):
+      - setGlobals:
+          ddogApikey: ${settings.ddogApikey}
 
   - log: "## you choose dx v${globals.dx_version}"
   - log: "## using url for universal package: ${globals.url_universal_package}"
@@ -182,7 +189,7 @@ onInstall:
         toolspwd: ${settings.toolspwd}
         browsingCount: ${settings.browsingCount}
         mode: ${settings.mode}
-        ddogApikey: ${settings.ddogApikey}
+        ddogApikey: ${globals.ddogApikey}
         dbnodeType: ${settings.dbnodeType}
         dbscheme: ${settings.dbscheme}
         dbnodes: ${settings.dbnodes}
