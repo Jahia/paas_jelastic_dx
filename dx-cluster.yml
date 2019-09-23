@@ -14,7 +14,7 @@ baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.9
 
 globals:
   url_package: ${baseUrl}
-  url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw/PAAS-309-haproxy
+  url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw
 
 settings:
   fields:
@@ -169,8 +169,7 @@ onInstall:
 
   - setGlobals:
       dx_version: ${settings.productVersion}
-      url_universal_package: ${globals.url_univ}
-      # url_universal_package: ${globals.url_univ}/${response.universal_version}
+      url_universal_package: ${globals.url_univ}/${response.universal_version}
 
   - if(settings.ddogApikey):
       - setGlobals:
