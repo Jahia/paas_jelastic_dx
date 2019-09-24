@@ -209,7 +209,7 @@ onInstall:
 
   # Install of haproxy environment
   - install:
-      jps: ${globals.url_universal_package}/scripts/add-haproxies.jps?_r=${fn.random}
+      jps: ${globals.url_universal_package}/haproxy/add-haproxies.jps?_r=${fn.random}
       shortdomain: "${settings.shortdomain}-ha"
       region: ${settings.envRegion}
       displayName: "${settings.displayname}-ha"
