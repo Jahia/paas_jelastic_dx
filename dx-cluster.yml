@@ -182,7 +182,7 @@ onInstall:
   - log: "## using url for universal package: ${globals.url_universal_package}"
 
   - install:
-    - jps: ${globals.url_universal_package}/dx-cluster-universal.yml?_r=${fn.random}
+      jps: ${globals.url_universal_package}/dx-cluster-universal.yml?_r=${fn.random}
       shortdomain: ${settings.shortdomain}
       region: ${settings.envRegion}
       displayName: ${settings.displayname}
@@ -201,7 +201,7 @@ onInstall:
         stack: ${settings.stack}
         is_proxysql: ${settings.is_proxysql}
         license: ${settings.license}
-        
+
   - setGlobals:
       dxEnvAppId: ${response.appid}
 
@@ -209,7 +209,7 @@ onInstall:
 
   # Install of haproxy environment
   - install:
-    - jps: ${globals.url_universal_package}/scripts/add-haproxies.jps?_r=${fn.random}
+      jps: ${globals.url_universal_package}/haproxy/add-haproxies.jps?_r=${fn.random}
       shortdomain: "${settings.shortdomain}-ha"
       region: ${settings.envRegion}
       displayName: "${settings.displayname}-ha"
