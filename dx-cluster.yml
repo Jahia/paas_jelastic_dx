@@ -150,6 +150,9 @@ settings:
       type: text
       caption: license
 
+globals:
+  haproxyShortdomain: ${settings.shortdomain}-ha
+
 onInstall:
   - script: |
       var matrix = {
@@ -210,9 +213,23 @@ onInstall:
   # Install of haproxy environment
   - install:
       jps: ${globals.url_universal_package}/haproxy/add-haproxies.jps?_r=${fn.random}
-      shortdomain: "${settings.shortdomain}-ha"
+      shortdomain: ${globals.haproxyShortdomain}
       region: ${settings.envRegion}
-      displayName: "${settings.displayname}-ha"
+      displayName: "${settings.displayname}-haproxy"
       settings:
         loadBalancerCount: ${settings.loadBalancerCount}
         targetEnvironment: ${globals.dxEnvAppId}
+
+  - api: environment.control.ApplyNodeGroupData
+    params:
+      envName: ${globals.dxEnvAppId}
+      nodeGroup: cp
+      data:
+        haproxyShortdomain: ${globals.haproxyShortdomain}
+
+  - api: environment.control.ApplyNodeGroupData
+    params:
+      envName: ${globals.dxEnvAppId}
+      nodeGroup: proc
+      data:
+        haproxyShortdomain: ${globals.haproxyShortdomain}
