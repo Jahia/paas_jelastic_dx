@@ -78,8 +78,6 @@ settings:
       default: mariadb-dockerized
       required: true
       values:
-        - value: mysql
-          caption: MySQL CE
         - value: mariadb-dockerized
           caption: MariaDB
     - caption: DB topology
@@ -88,15 +86,6 @@ settings:
       required: true
       dependsOn:
         stack:
-          mysql:
-            - value: slave
-              caption: Master-Slave with extra slaves
-            - value: master
-              caption: Master-Master with extra slaves
-            - value: single
-              caption: Single Group Replication
-            - value: multi
-              caption: Multi Group Replication
           mariadb-dockerized:
             - value: single
               caption: One, lonely, sad and single master
@@ -106,18 +95,12 @@ settings:
               caption: Master-Master with extra slaves
             - value: galera
               caption: Galera Cluster
-    - type: checkbox
-      name: is_proxysql
-      caption: Add ProxySQL for SQL Load Balancing
-      value: false
     - caption: None
       inputType: hidden
       type: list
       name: dbnodeType
       dependsOn:
         stack:
-          mysql:
-            - value: mysql
           mariadb-dockerized:
             - value: mariadb-dockerized
     - caption: None
@@ -126,16 +109,12 @@ settings:
       name: dbnodes
       dependsOn:
         dbscheme:
-          lonely:
+          single:
             - value: 1
           slave:
             - value: 2
           master:
             - value: 2
-          single:
-            - value: 3
-          multi:
-            - value: 3
           galera:
             - value: 3
     - name: shortdomain
@@ -200,7 +179,6 @@ onInstall:
         dbscheme: ${settings.dbscheme}
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
-        is_proxysql: ${settings.is_proxysql}
         license: ${settings.license}
 
   - setGlobals:
