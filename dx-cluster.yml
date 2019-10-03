@@ -15,6 +15,7 @@ baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.9
 globals:
   url_package: ${baseUrl}
   url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw
+  haproxyShortdomain: ${settings.shortdomain}-ha
 
 settings:
   fields:
@@ -210,9 +211,23 @@ onInstall:
   # Install of haproxy environment
   - install:
       jps: ${globals.url_universal_package}/haproxy/add-haproxies.jps?_r=${fn.random}
-      shortdomain: "${settings.shortdomain}-ha"
+      shortdomain: ${globals.haproxyShortdomain}
       region: ${settings.envRegion}
-      displayName: "${settings.displayname}-ha"
+      displayName: "${settings.displayname}-haproxy"
       settings:
         loadBalancerCount: ${settings.loadBalancerCount}
         targetEnvironment: ${globals.dxEnvAppId}
+
+  - api: environment.control.ApplyNodeGroupData
+    params:
+      envName: ${globals.dxEnvAppId}
+      nodeGroup: cp
+      data:
+        haproxyShortdomain: ${globals.haproxyShortdomain}
+
+  - api: environment.control.ApplyNodeGroupData
+    params:
+      envName: ${globals.dxEnvAppId}
+      nodeGroup: proc
+      data:
+        haproxyShortdomain: ${globals.haproxyShortdomain}
