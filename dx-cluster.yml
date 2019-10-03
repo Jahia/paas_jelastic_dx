@@ -95,10 +95,6 @@ settings:
               caption: Master-Master with extra slaves
             - value: galera
               caption: Galera Cluster
-    - type: checkbox
-      name: is_proxysql
-      caption: Add ProxySQL for SQL Load Balancing
-      value: false
     - caption: None
       inputType: hidden
       type: list
@@ -183,7 +179,6 @@ onInstall:
         dbscheme: ${settings.dbscheme}
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
-        is_proxysql: ${settings.is_proxysql}
         license: ${settings.license}
 
   - setGlobals:
