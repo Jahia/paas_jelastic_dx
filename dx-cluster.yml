@@ -126,14 +126,12 @@ settings:
       name: dbnodes
       dependsOn:
         dbscheme:
-          lonely:
+          single:
             - value: 1
           slave:
             - value: 2
           master:
             - value: 2
-          single:
-            - value: 3
           multi:
             - value: 3
           galera:
