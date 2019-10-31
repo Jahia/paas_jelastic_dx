@@ -49,11 +49,6 @@ settings:
       vtype: text
       required: true
       default: 2
-    - name: loadBalancerCount
-      caption: Number of haproxy nodes
-      type: string
-      required: true
-      default: 2
     - name: envRegion
       type: regionlist
       caption: Region
@@ -180,32 +175,3 @@ onInstall:
         dbnodes: ${settings.dbnodes}
         stack: ${settings.stack}
         license: ${settings.license}
-
-  - setGlobals:
-      dxEnvAppId: ${response.appid}
-
-  - log: "## Installing haproxy environment"
-
-  # Install of haproxy environment
-  - install:
-      jps: ${globals.url_universal_package}/haproxy/add-haproxies.jps?_r=${fn.random}
-      shortdomain: ${globals.haproxyShortdomain}
-      region: ${settings.envRegion}
-      displayName: "${settings.displayname}-haproxy"
-      settings:
-        loadBalancerCount: ${settings.loadBalancerCount}
-        targetEnvironment: ${globals.dxEnvAppId}
-
-  - api: environment.control.ApplyNodeGroupData
-    params:
-      envName: ${globals.dxEnvAppId}
-      nodeGroup: cp
-      data:
-        haproxyShortdomain: ${globals.haproxyShortdomain}
-
-  - api: environment.control.ApplyNodeGroupData
-    params:
-      envName: ${globals.dxEnvAppId}
-      nodeGroup: proc
-      data:
-        haproxyShortdomain: ${globals.haproxyShortdomain}
