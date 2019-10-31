@@ -15,7 +15,6 @@ baseUrl: https://github.com/Jahia/paas_jelastic_dx/raw/v1.9
 globals:
   url_package: ${baseUrl}
   url_univ: https://github.com/Jahia/paas_jelastic_dx_universal/raw
-  haproxyShortdomain: ${settings.shortdomain}-ha
 
 settings:
   fields:
