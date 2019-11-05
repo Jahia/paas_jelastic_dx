@@ -59,13 +59,12 @@ settings:
         production: production
         development: development
       default: production
-      showIf:
-        production:
-          - name: ddogApikey
-            type: string
-            caption: Datadog API KEY
-            required: true
-            vtype: text
+    - name: ddogApikey
+      type: string
+      caption: Datadog API KEY
+      required: true
+      vtype: text
+      default: NoDatadog
     - caption: DB stack
       type: list
       name: stack
