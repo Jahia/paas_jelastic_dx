@@ -31,7 +31,9 @@ settings:
         "7.3.0.2": 7.3.0.2
         "7.3.1.0": 7.3.1.0
         "7.3.1.1": 7.3.1.1
-      default: 7.3.1.1
+        "7.3.2.0": 7.3.2.0
+        "7.3.3.0": 7.3.3.0
+      default: 7.3.3.0
     - name: rootpwd
       type: string
       caption: Jahia DX root password
@@ -134,7 +136,9 @@ onInstall:
         "7.3.0.0": "v1.9",
         "7.3.0.2": "v1.9",
         "7.3.1.0": "v1.9",
-        "7.3.1.1": "v1.9"
+        "7.3.1.1": "v1.9",
+        "7.3.2.0": "v1.9",
+        "7.3.3.0": "v1.9"
       };
       return {"result": 0,
         "universal_version": matrix['${settings.productVersion}']
