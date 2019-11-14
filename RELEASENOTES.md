@@ -2,10 +2,11 @@
 
 ## actual version: v1.9
 
-### v1.9 (2019-09-23)
-* [NEW]:  PAAS-309 creation of haproxy environment to load balance jahia environement
-* [NEW]:  now default universal package tag is v1.9
-* [NEW]:  set and send a default string for `ddogApikey` if create dev env
+### v1.9 (2019-11-14)
+* [NEW]: add Jahia versions 7.3.2.0 and 7.3.3.0 (default)
+* [NEW]: now default universal package tag is v1.9
+* [NEW]: set and send a default string for `ddogApikey` if create dev env
+* [BUG]: fix value for "single" node
 
 ### v1.8 (2019-09-03)
 * [NEW]:  now default universal package tag is v1.8.1
